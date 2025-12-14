@@ -1,4 +1,3 @@
-import os
 def parse():
     s = open('input.txt','r')
     lineas = s.read()
