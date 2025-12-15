@@ -18,14 +18,15 @@ def sol():
     inpt = parse()
     res = 0
     for bat in inpt:
-        res += int(maxComb(bat))
+        res += int(maxComb(bat,11))
     return res
 
-def maxComb(bat):
-    fichr = imax(0,len(bat)-1,bat)
-    s = cut(bat,fichr+1,len(bat))
-    sichr = imax(0,len(s),s) + fichr +1
-    return bat[fichr] + bat[sichr]
+def maxComb(bat,digitos):
+    if digitos == 0:
+        return bat[imax(0,len(bat),bat)]
+    else:
+        fichr = imax(0,len(bat)-digitos,bat)
+        return bat[fichr] + maxComb(cut(bat,fichr + 1,len(bat)),digitos - 1)
 
 def imax(inx,endix,bat):
     res = 0
@@ -35,7 +36,6 @@ def imax(inx,endix,bat):
             break
         elif int(bat[i]) > int(bat[res]):
             res = i
-    print(res)
     return res
 
 def cut(s,i,end):
